@@ -135,9 +135,7 @@ class TestScriptRunnable
         when 'history'
           reply = client.resource_instance_history(op.class, id_map[op.targetId])
         when 'vread'
-          #TODO: Add params based execution
-          empty_resource = FHIR.from_contents({"resourceType": "#{op.resource}"}.to_json)
-          reply = client.vread(empty_resource.class, id_map[op.targetId], op.params[1..-1])
+          reply = client.vread("FHIR::#{op.resource}".class, id_map[op.targetId], op.params&[1..-1] || '1')
         else
           reply = client.send *request
         end
