@@ -10,9 +10,9 @@
     "reference": "../TestScripts/read_test_script.json"
   },
   "result": "fail",
-  "score": 91.67,
+  "score": 83.33,
   "tester": "The MITRE Corporation",
-  "issued": "2022-05-11T23:27:40-06:00",
+  "issued": "2022-05-30T15:24:30-06:00",
   "test": [
     {
       "name": "Sprinkler Read Test R001",
@@ -85,8 +85,9 @@
           "assert": {
             "result": {
               "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-              "code": "pass"
-            }
+              "code": "fail"
+            },
+            "message": "[.assert_response] Expected 404 but found 410."
           }
         }
       ]

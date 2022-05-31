@@ -9,10 +9,10 @@
   "testScript": {
     "reference": "../TestScripts/search_test_script_obs.json"
   },
-  "result": "fail",
-  "score": 72.22,
+  "result": "pass",
+  "score": 100.0,
   "tester": "The MITRE Corporation",
-  "issued": "2022-05-11T23:27:51-06:00",
+  "issued": "2022-05-30T15:25:05-06:00",
   "setup": {
     "action": [
       {
@@ -51,9 +51,8 @@
         "assert": {
           "result": {
             "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-            "code": "fail"
-          },
-          "message": "[.assert_navigation_links] Bundle resource does not contain first, last, and next links as expected."
+            "code": "pass"
+          }
         }
       }
     ]
@@ -129,9 +128,8 @@
           "assert": {
             "result": {
               "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-              "code": "fail"
-            },
-            "message": "[.assert_response] Expected 200 but found 400."
+              "code": "pass"
+            }
           }
         },
         {
@@ -146,9 +144,8 @@
           "assert": {
             "result": {
               "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-              "code": "fail"
-            },
-            "message": "[.assert_resource] Expected Bundle but found OperationOutcome."
+              "code": "pass"
+            }
           }
         },
         {
@@ -164,18 +161,16 @@
           "assert": {
             "result": {
               "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-              "code": "fail"
-            },
-            "message": "[.assert_path] Expected searchset but found nothing."
+              "code": "pass"
+            }
           }
         },
         {
           "assert": {
             "result": {
               "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-              "code": "fail"
-            },
-            "message": "[.assert_expression] Invalid Expression: Bundle.total.toInteger() >= entry.count(). Valid FHIRPath Expression is required."
+              "code": "pass"
+            }
           }
         }
       ]

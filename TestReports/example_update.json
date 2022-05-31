@@ -10,9 +10,9 @@
     "reference": "../TestScripts/update_test_script.json"
   },
   "result": "fail",
-  "score": 75.0,
+  "score": 87.5,
   "tester": "The MITRE Corporation",
-  "issued": "2022-05-11T23:27:52-06:00",
+  "issued": "2022-05-30T15:25:05-06:00",
   "setup": {
     "action": [
       {
@@ -28,9 +28,8 @@
         "assert": {
           "result": {
             "system": "http://hl7.org/fhir/ValueSet/report-action-result-codes",
-            "code": "fail"
-          },
-          "message": "[.assert_response_code] Expected 200,204 but found 409."
+            "code": "pass"
+          }
         }
       },
       {

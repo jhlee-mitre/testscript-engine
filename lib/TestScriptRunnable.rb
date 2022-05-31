@@ -8,6 +8,7 @@ require_relative './TestReportHandler.rb'
 
 class TestScriptRunnable
   REQUEST_TYPES = { 'read' => :get, 
+                    'vread' => :get, 
                     'create' => :post, 
                     'update' => :put, 
                     'delete' => :delete, 
@@ -130,8 +131,13 @@ class TestScriptRunnable
       request.compact!
 
       begin
-        if op.type.code == 'history'
+        case op.type.code 
+        when 'history'
           reply = client.resource_instance_history(op.class, id_map[op.targetId])
+        when 'vread'
+          #TODO: Add params based execution
+          empty_resource = FHIR.from_contents({"resourceType": "#{op.resource}"}.to_json)
+          reply = client.vread(empty_resource.class, id_map[op.targetId], op.params[1..-1])
         else
           reply = client.send *request
         end
