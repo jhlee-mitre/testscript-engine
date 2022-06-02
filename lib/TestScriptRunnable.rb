@@ -126,7 +126,10 @@ class TestScriptRunnable
       request_type = REQUEST_TYPES[op.local_method || op.type.code]
       throw :exit, report.skip('notImplemented') unless request_type
 
-      request = [request_type, extract_path(op), extract_body(request_type, op), extract_headers(op)]
+      body = extract_body(op, request_type)
+      throw :exit, report.fail('unknownFailure') unless body
+
+      request = [request_type, extract_path(op), body, extract_headers(op)]
       request.compact!
 
       begin
@@ -193,12 +196,11 @@ class TestScriptRunnable
     client.resource_url(pieces)
   end
 
-  def extract_body(request_type, op)
+  def extract_body(operation, request_type)
     return unless SENDER_TYPES.include?(request_type)
+    return unless operation.sourceId or operation.targetId
 
-    body = find_resource(op.sourceId || op.targetId)
-    throw :exit, report.fail('noSourceFixture') unless body
-    return body
+    fixtures[operation.sourceId] or response_map[operation.targetId]&.resource 
   end
 
   def extract_headers op
