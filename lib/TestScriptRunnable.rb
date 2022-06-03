@@ -201,15 +201,16 @@ class TestScriptRunnable
     return body
   end
 
-  def extract_headers operation
+  def extract_headers(operation)
     headers = {}
     headers.merge!({ 'Accept' => get_format(operation.accept) }) if operation.accept
     headers.merge!({ 'Content-Type' => get_format(operation.contentType) }) if operation.contentType
 
-    return (headers.merge!(
-      Hash[operation.requestHeader.map do |header| 
-        [header.field, replace_variables(header.value)]
-      end]).empty? ? nil : headers)
+    headers.merge! Hash[operation.requestHeader.map do |header|
+      [header.field, replace_variables(header.value)]
+    end]
+
+    headers.empty? ? nil : headers
   end
 
   def get_format format
