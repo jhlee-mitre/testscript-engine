@@ -126,7 +126,10 @@ class TestScriptRunnable
       request_type = REQUEST_TYPES[op.local_method || op.type.code]
       throw :exit, report.skip('notImplemented') unless request_type
 
-      request = [request_type, extract_path(op), extract_body(request_type, op), extract_headers(op)]
+      headers = extract_headers(op)
+      headers = client.fhir_headers headers
+
+      request = [request_type, extract_path(op), extract_body(request_type, op), headers]
       request.compact!
 
       begin
